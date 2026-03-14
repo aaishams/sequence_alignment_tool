@@ -1,7 +1,0 @@
-{
- "functions": {
-   "api/align.py": {
-     "runtime": "python3.11"
-   }
- }
-}
