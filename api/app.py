@@ -122,7 +122,14 @@ class handler(BaseHTTPRequestHandler):
         mismatch_score = int(data["mismatch"])
         gap_penalty = int(data["gap"])
 
-        alignment1, alignment2, matrix = needleman_wunsch(
+        method = data["method"]
+        if method == "needleman":
+            alignment1, alignment2, matrix = needleman_wunsch(
+            seq1, seq2, match_score, mismatch_score, gap_penalty
+        )
+
+        elif method == "smith":
+            alignment1, alignment2, matrix = smith_waterman(
             seq1, seq2, match_score, mismatch_score, gap_penalty
         )
 
