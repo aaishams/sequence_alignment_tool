@@ -90,6 +90,7 @@ class handler(BaseHTTPRequestHandler):
         score = alignment_score(alignment1, alignment2, match_score, mismatch_score, gap_penalty)
 
         response = {
+            "matrix": matrix,
             "alignment1": alignment1,
             "alignment2": alignment2,
             "score": score
