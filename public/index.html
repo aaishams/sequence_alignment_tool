@@ -40,7 +40,7 @@ const match=document.getElementById("match").value
 const mismatch=document.getElementById("mismatch").value
 const gap=document.getElementById("gap").value
 
-const response = await fetch("/api/align",{
+const response = await fetch("/api/app",{
 method:"POST",
 headers:{ "Content-Type":"application/json" },
 body: JSON.stringify({seq1,seq2,match,mismatch,gap})
