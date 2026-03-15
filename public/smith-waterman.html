@@ -2,12 +2,12 @@
 <html>
 
 <head>
-<title>Needleman-Wunsch Alignment Tool</title>
+<title>Sequence Alignment Tool</title>
 </head>
 
 <body>
 
-<h2>Needleman-Wunsch Sequence Alignment</h2>
+<h2>Smith-Waterman Sequence Alignment</h2>
 
 Sequence 1<br>
 <input id="seq1"><br><br>
@@ -45,7 +45,7 @@ const gap=document.getElementById("gap").value
 const response = await fetch("/api",{
 method:"POST",
 headers:{ "Content-Type":"application/json" },
-body: JSON.stringify({seq1,seq2,match,mismatch,gap})
+body: JSON.stringify({seq1,seq2,match,mismatch,gap,method:"smith"})
 })
 
 const data = await response.json()
