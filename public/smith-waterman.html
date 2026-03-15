@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Needleman-Wunsch Alignment Tool</title>
+</head>
+
+<body>
+
+<h2>Needleman-Wunsch Sequence Alignment</h2>
+
+Sequence 1<br>
+<input id="seq1"><br><br>
+
+Sequence 2<br>
+<input id="seq2"><br><br>
+
+Match Score<br>
+<input id="match"><br><br>
+
+Mismatch Score<br>
+<input id="mismatch"><br><br>
+
+Gap Penalty<br>
+<input id="gap"><br><br>
+
+<button onclick="align()">Align</button>
+
+<h3>Alignment Result</h3>
+<pre id="result"></pre>
+    
+<h3>Scoring Matrix</h3>
+<pre id="matrix"></pre>
+
+<script>
+
+async function align(){
+
+const seq1=document.getElementById("seq1").value
+const seq2=document.getElementById("seq2").value
+const match=document.getElementById("match").value
+const mismatch=document.getElementById("mismatch").value
+const gap=document.getElementById("gap").value
+
+const response = await fetch("/api",{
+method:"POST",
+headers:{ "Content-Type":"application/json" },
+body: JSON.stringify({seq1,seq2,match,mismatch,gap})
+})
+
+const data = await response.json()
+
+document.getElementById("result").textContent =
+data.alignment1 + "\n" +
+data.alignment2 + "\n\nScore: " + data.score
+let matrixText = ""
+
+for (let row of data.matrix){
+    matrixText += row.join("\t") + "\n"
+}
+
+document.getElementById("matrix").textContent = matrixText
+}
+</script>
+
+</body>
+</html>
